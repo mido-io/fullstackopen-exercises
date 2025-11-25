@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:3003/api
+@authToken = <paste_your_token_here_after_login>
+
+### Get all blogs
+GET {{baseUrl}}/blogs
+
+### Create a new blog (Requires Token)
+# Make sure @authToken is set at the top
+POST {{baseUrl}}/blogs
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "React patterns",
+    "author": "Michael Chan",
+    "url": "https://reactpatterns.com/",
+    "likes": 7
+}
+
+### Create another blog (Requires Token)
+POST {{baseUrl}}/blogs
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+    "title": "Go To Statement Considered Harmful",
+    "author": "Edsger W. Dijkstra",
+    "url": "http://www.u.arizona.edu/~rubinson/copyright_violations/Go_To_Considered_Harmful.html",
+    "likes": 5
+}
+
+### Delete a blog (Requires Token of the creator)
+# Replace :id with an actual ID from the GET response
+DELETE {{baseUrl}}/blogs/:id
+Authorization: Bearer {{authToken}}
+
+### Update a blog (likes)
+# Replace :id with an actual ID
+PUT {{baseUrl}}/blogs/:id
+Content-Type: application/json
+
+{
+    "title": "React patterns",
+    "author": "Michael Chan",
+    "url": "https://reactpatterns.com/",
+    "likes": 100
+}
